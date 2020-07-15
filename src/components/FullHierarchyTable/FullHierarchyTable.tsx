@@ -59,6 +59,7 @@ export type FullHierarchyTableAllProps = FullHierarchyTableOwnProps & FullHierar
 
 const emptyData: AssociatedItem[] = []
 const emptyMultivalue: MultivalueSingleValue[] = []
+const emptyOpenedRecrods: string[] = [] 
 const components = { filter: FullHierarchyFilter }
 const ancestorsKeysCache = new HierarchySearchCache()
 const descendantsKeysCache = new HierarchySearchCache()
@@ -81,7 +82,7 @@ export const FullHierarchyTable: React.FunctionComponent<FullHierarchyTableAllPr
     const loading = props.loading
     const depthLevel = props.depth || 1
     const indentLevel = depthLevel - 1
-    const [userOpenedRecords, setUserOpenedRecords] = React.useState([])
+    const [userOpenedRecords, setUserOpenedRecords] = React.useState<string[]>(emptyOpenedRecrods)
 
     React.useEffect(
         () => {
@@ -146,7 +147,7 @@ export const FullHierarchyTable: React.FunctionComponent<FullHierarchyTableAllPr
                 // Filter out leafs without children
                 ? ancestorsData?.filter(item => ancestorsData.some(child => item.id === child.parentId)).map(item => item.id)
                 : []
-            const newExpandedKeys = new Set([...expandManual, ...expandAssoc,...expandFiltered])
+            const newExpandedKeys = new Set([...userOpenedRecords, ...expandManual, ...expandAssoc,...expandFiltered])
             if (newExpandedKeys.size > 0) {
                 setUserOpenedRecords(Array.from(newExpandedKeys))
             }
@@ -302,7 +303,7 @@ export const FullHierarchyTable: React.FunctionComponent<FullHierarchyTableAllPr
                 showHeader={depthLevel === 1}
                 expandIcon={Exp as any}
                 defaultExpandedRowKeys={undefined}
-                expandedRowKeys={userOpenedRecords || []}
+                expandedRowKeys={userOpenedRecords || emptyOpenedRecrods}
                 onExpand={handleExpand}
                 dataSource={tableRecords}
                 expandedRowRender={nestedHierarchy}
