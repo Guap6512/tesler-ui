@@ -19,8 +19,6 @@ interface ValueCellProps {
     meta: WidgetInfoMeta,
     data: DataItem,
     flattenWidgetFields: WidgetInfoField[]
-    totalWidth: number
-    colIndex: number
     onDrillDown: (widgetName: string, cursor: string, bcName: string, fieldKey: string) => void,
 }
 const emptyMultivalueField = [] as MultivalueSingleValue[]
@@ -77,11 +75,8 @@ export const ValueCell: React.FunctionComponent<ValueCellProps> = props => {
 
     return <ValueWrapper
         key={field.key}
-        field={field}
         row={props.row}
         col={props.col}
-        totalWidth={props.totalWidth}
-        colIndex={props.colIndex}
         meta={props.meta}
     >
         {(field.label?.length !== 0) &&

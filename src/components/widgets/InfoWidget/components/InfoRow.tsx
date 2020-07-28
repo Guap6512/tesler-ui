@@ -40,8 +40,6 @@ const InfoRow: React.FunctionComponent<InfoRowProps> = props => {
                     meta={props.meta}
                     data={props.data}
                     flattenWidgetFields={props.flattenWidgetFields}
-                    totalWidth={totalWidth}
-                    colIndex={colIndex}
                     onDrillDown={props.onDrillDown}
                 />
             })}
