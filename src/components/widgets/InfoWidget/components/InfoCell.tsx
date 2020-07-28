@@ -6,15 +6,13 @@ import styles from './InfoCell.less'
 import {DataItem, MultivalueSingleValue} from 'interfaces/data'
 import Field from 'components/Field/Field'
 import ActionLink from 'components/ui/ActionLink/ActionLink'
-import {WidgetInfoField, WidgetInfoMeta} from 'interfaces/widget'
+import {LayoutCol, LayoutRow, WidgetInfoField, WidgetInfoMeta} from 'interfaces/widget'
 import InfoValueWrapper from './InfoValueWrapper'
 import MultiValueListRecord from 'components/Multivalue/MultiValueListRecord'
 
 interface ValueCellProps {
-    row: {
-        cols: Array<{fieldKey: string, span?: number}>
-    }
-    col: {fieldKey: string, span?: number}
+    row: LayoutRow,
+    col: LayoutCol,
     cursor: string,
     meta: WidgetInfoMeta,
     data: DataItem,

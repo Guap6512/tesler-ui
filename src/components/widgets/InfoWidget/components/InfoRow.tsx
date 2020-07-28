@@ -3,7 +3,7 @@ import {Col, Row} from 'antd'
 import styles from './InfoRow.less'
 import cn from 'classnames'
 import InfoCell from './InfoCell'
-import {WidgetInfoField, WidgetInfoMeta} from 'interfaces/widget'
+import {LayoutRow, WidgetInfoField, WidgetInfoMeta} from 'interfaces/widget'
 import {DataItem} from 'interfaces/data'
 import {RowMetaField} from 'interfaces/rowMeta'
 
@@ -13,9 +13,7 @@ interface InfoRowProps {
     flattenWidgetFields: WidgetInfoField[],
     fields: RowMetaField[],
     onDrillDown: (widgetName: string, cursor: string, bcName: string, fieldKey: string) => void,
-    row: {
-        cols: Array<{fieldKey: string, span?: number}>
-    }
+    row: LayoutRow,
     cursor: string,
     index: number
 }

@@ -2,13 +2,11 @@ import cn from 'classnames'
 import React, {ReactNode} from 'react'
 import styles from './InfoValueWrapper.less'
 import {Col} from 'antd'
-import {WidgetInfoMeta} from 'interfaces/widget'
+import {LayoutCol, LayoutRow, WidgetInfoMeta} from 'interfaces/widget'
 
 interface ValueWrapperProps {
-    row: {
-        cols: Array<{fieldKey: string, span?: number}>
-    }
-    col: {fieldKey: string, span?: number}
+    row: LayoutRow,
+    col: LayoutCol,
     meta: WidgetInfoMeta,
     children?: ReactNode
 }

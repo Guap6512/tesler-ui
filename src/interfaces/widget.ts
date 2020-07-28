@@ -177,9 +177,7 @@ export interface WidgetOptions {
     layout?: {
         header?: string[],
         aside?: string[],
-        rows: Array<{
-            cols: Array<{fieldKey: string, span?: number}>
-        }>
+        rows: LayoutRow[]
     },
     tableOperations?: TableOperations,
     /**
@@ -329,6 +327,21 @@ export interface WidgetTextMeta extends WidgetMeta {
 export interface WidgetOperations {
     include?: OperationInclusionDescriptor[],
     exclude?: OperationType[]
+}
+
+/**
+ * Description of the interface for WidgetOptions's layout.rows
+ */
+export interface LayoutCol {
+    fieldKey: string,
+    span?: number
+}
+
+/**
+ * Description of the interface for LayoutRow
+ */
+export interface LayoutRow {
+    cols: LayoutCol[]
 }
 
 export type CustomWidget = ConnectedComponentClass<any, any> | FunctionComponent<any>
