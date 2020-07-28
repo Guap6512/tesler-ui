@@ -5,6 +5,7 @@ import {PickMap, DataValue} from './data'
 import {OperationType, OperationInclusionDescriptor} from './operation'
 
 export const enum WidgetTypes {
+    Info = 'Info',
     Form = 'Form',
     List = 'List',
     DataGrid = 'DataGrid',
@@ -155,6 +156,20 @@ export type WidgetFormField = Extract<WidgetField, WidgetFormFieldBase>
 export type WidgetListField = Extract<WidgetField, WidgetListFieldBase>
 
 /**
+ *
+ */
+export type WidgetInfoField = WidgetFormField & {
+    drillDownTitle?: string,
+    drillDownTitleKey?: string,
+    hintKey?: string,
+}
+
+export interface WidgetInfoOptions {
+    fieldBorderBottom?: boolean,
+    footer?: string
+}
+
+/**
  * @param readOnly All widget fields are not editable
  * @param tableOperations Options for allowed on table widget actions
  */
@@ -254,6 +269,12 @@ export interface WidgetFormMeta extends WidgetMeta {
 export interface WidgetTableMeta extends WidgetMeta {
     type: WidgetTypes.List | WidgetTypes.DataGrid,
     fields: WidgetListField[]
+}
+
+export interface WidgetInfoMeta extends WidgetMeta {
+    type: WidgetTypes.Info,
+    fields: WidgetFieldsOrBlocks<WidgetInfoField>,
+    options?: WidgetOptions & WidgetInfoOptions
 }
 
 /**

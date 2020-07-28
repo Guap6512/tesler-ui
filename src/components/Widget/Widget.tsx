@@ -9,11 +9,13 @@ import {
     WidgetTableMeta,
     CustomWidget,
     WidgetShowCondition,
+    WidgetInfoMeta,
     WidgetTextMeta
 } from '../../interfaces/widget'
 import TableWidget from '../widgets/TableWidget/TableWidget'
 import TextWidget from '../widgets/TextWidget/TextWidget'
 import FormWidget from '../widgets/FormWidget/FormWidget'
+import InfoWidget from '../widgets/InfoWidget/InfoWidget'
 import styles from './Widget.less'
 import AssocListPopup from '../widgets/AssocListPopup/AssocListPopup'
 import {ObjectMap} from '../../interfaces/objectMap'
@@ -104,6 +106,8 @@ function chooseWidgetType(widgetMeta: WidgetMeta, customWidgets?: ObjectMap<Cust
             return <AssocListPopup widget={widgetMeta as WidgetTableMeta} />
         case WidgetTypes.PickListPopup:
             return <PickListPopup widget={widgetMeta as WidgetTableMeta} />
+        case WidgetTypes.Info:
+            return <InfoWidget meta={widgetMeta as WidgetInfoMeta}/>
         default:
             return children
     }
