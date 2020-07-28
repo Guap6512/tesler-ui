@@ -16,22 +16,9 @@ interface ValueWrapperProps {
     children?: ReactNode
 }
 const ValueWrapper: React.FunctionComponent<ValueWrapperProps> = props => {
-    return <Col key={props.field.key} span={props.col.span} className={cn(
-        {[styles.colWrap]: props.row.cols.length > 1},
-        {
-            [styles.rightCol]: props.col.span
-            && props.totalWidth > 24
-            && props.colIndex !== 0
-            && props.row.cols.length % (props.colIndex + 1) === 0
-        },
-        {
-            [styles.leftCol]: props.col.span
-            && props.totalWidth > 24
-            && props.row.cols.length % (props.colIndex + 1) !== 0
-            || props.colIndex === 0
-            && props.col.span
-        })
-    }
+    return <Col
+        span={props.col.span}
+        className={cn({[styles.colWrap]: props.row.cols.length > 1})}
     >
         <div className={cn(styles.fieldArea,
             {[styles.noFieldSeparator]: props.meta.options?.fieldBorderBottom === false},

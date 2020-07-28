@@ -22,10 +22,9 @@ interface InfoRowProps {
 const InfoRow: React.FunctionComponent<InfoRowProps> = props => {
     const totalWidth = props.row.cols.reduce((prev, current) => prev + current.span, 0)
     return <Row className={styles.rowWrapper}>
-        {props.meta.options?.layout?.aside?.length > 0 && <Col span={5}>{props.meta.options.layout.aside[props.index]}</Col>}
         <Col
-            span={props.meta.options?.layout?.aside?.length > 0 ? 19 : 24}
-            className={cn(styles.mainCol, {[styles.extraWidth]: totalWidth > 24})}
+            span={24}
+            className={cn({[styles.extraWidth]: totalWidth > 24})}
         >
             {props.row.cols
             .filter(field => {
@@ -48,7 +47,6 @@ const InfoRow: React.FunctionComponent<InfoRowProps> = props => {
             })}
         </Col>
     </Row>
-
 }
 
 export default React.memo(InfoRow)

@@ -27,18 +27,21 @@ const emptyMultivalueField = [] as MultivalueSingleValue[]
 export const ValueCell: React.FunctionComponent<ValueCellProps> = props => {
     const field = props.flattenWidgetFields.find(item => item.key === props.col.fieldKey)
     const isMultiValue = field.type === FieldType.multivalue
-    const fieldTitle = <TemplatedTitle
-        widgetName={props.meta.name}
-        title={field.label}
-    />
 
-    const separateDrillDownTitle = field.drillDown && (
-        field.drillDownTitle
-        || field.drillDownTitleKey && props.data[field.drillDownTitleKey]
+    const separateDrillDownTitle = field.drillDown &&
+        (field.drillDownTitle || field.drillDownTitleKey && props.data[field.drillDownTitleKey])
+    const handleDrillDown = React.useCallback(
+        () => {
+            props.onDrillDown(props.meta.name, props.data.id, props.meta.bcName, field.key)
+        },
+        [
+            props.onDrillDown,
+            props.meta.name,
+            props.data.id,
+            props.meta.bcName,
+            field.key
+        ]
     )
-    const handleDrillDown = () => {
-        props.onDrillDown(props.meta.name, props.data.id, props.meta.bcName, field.key)
-    }
 
     const ResultField = isMultiValue
         ? ((props.data[field.key] || emptyMultivalueField) as MultivalueSingleValue[]).map((multiValueSingleValue, index) => {
@@ -81,7 +84,14 @@ export const ValueCell: React.FunctionComponent<ValueCellProps> = props => {
         colIndex={props.colIndex}
         meta={props.meta}
     >
-        {(field.label?.length !== 0) && <div className={styles.labelArea}>{fieldTitle}</div>}
+        {(field.label?.length !== 0) &&
+        <div className={styles.labelArea}>
+            <TemplatedTitle
+                widgetName={props.meta.name}
+                title={field.label}
+            />
+        </div>
+        }
         <div className={styles.fieldData}>
             {ResultField}
         </div>

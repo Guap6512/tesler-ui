@@ -9,9 +9,7 @@ import {buildBcUrl} from 'utils/strings'
 import {Dispatch} from 'redux'
 import {$do} from 'actions/actions'
 import {connect} from 'react-redux'
-// import styles from './InfoWidget.less'
 import InfoRow from 'components/widgets/InfoWidget/components/InfoRow'
-import InfoHeader from 'components/widgets/InfoWidget/components/InfoHeader'
 
 interface InfoWidgetOwnProps {
     meta: WidgetInfoMeta
@@ -38,15 +36,6 @@ const InfoWidget: React.FunctionComponent<InfoWidgetProps> = (props) => {
             return false
         }
     })
-    // const Header = options?.layout?.header?.length > 0 && <Row className={styles.gridHeader}>
-    //     <Col span={options.layout.aside ? 19 : 24}>
-    //         {options.layout.header.map((col, index) =>
-    //             <Col key={index} span={24 / options.layout.header.length}>
-    //                 {col}
-    //             </Col>
-    //         )}
-    //     </Col>
-    // </Row>
 
     const InfoRows = options?.layout?.rows
     .filter((row) => row.cols.find((col) => !hiddenKeys.includes(col.fieldKey)))
@@ -64,7 +53,6 @@ const InfoWidget: React.FunctionComponent<InfoWidgetProps> = (props) => {
 
     return <div className={props.containerStyle}>
         <Row>
-            <InfoHeader meta={props.meta}/>
             {InfoRows}
         </Row>
     </div>
