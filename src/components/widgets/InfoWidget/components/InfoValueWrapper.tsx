@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import React, {ReactNode} from 'react'
-import styles from './ValueWrapper.less'
+import styles from './InfoValueWrapper.less'
 import {Col} from 'antd'
 import {WidgetInfoMeta} from 'interfaces/widget'
 
@@ -12,7 +12,7 @@ interface ValueWrapperProps {
     meta: WidgetInfoMeta,
     children?: ReactNode
 }
-const ValueWrapper: React.FunctionComponent<ValueWrapperProps> = props => {
+const InfoValueWrapper: React.FunctionComponent<ValueWrapperProps> = props => {
     return <Col span={props.col.span}>
         <div className={cn(styles.fieldArea, {[styles.columnDirection]: props.row.cols.length > 1})}>
             {props.children}
@@ -20,4 +20,4 @@ const ValueWrapper: React.FunctionComponent<ValueWrapperProps> = props => {
     </Col>
 }
 
-export default React.memo(ValueWrapper)
+export default React.memo(InfoValueWrapper)

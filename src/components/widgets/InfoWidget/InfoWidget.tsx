@@ -24,7 +24,6 @@ interface InfoWidgetProps extends InfoWidgetOwnProps {
 }
 
 const InfoWidget: React.FunctionComponent<InfoWidgetProps> = (props) => {
-    // const data = props.data
     const options = props.meta.options
     const hiddenKeys: string[] = []
     const flattenWidgetFields = useFlatFormFields<WidgetInfoField>(props.meta.fields)

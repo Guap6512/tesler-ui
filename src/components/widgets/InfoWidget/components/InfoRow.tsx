@@ -2,7 +2,7 @@ import React from 'react'
 import {Col, Row} from 'antd'
 import styles from './InfoRow.less'
 import cn from 'classnames'
-import ValueCell from 'components/widgets/InfoWidget/components/ValueCell'
+import InfoCell from './InfoCell'
 import {WidgetInfoField, WidgetInfoMeta} from 'interfaces/widget'
 import {DataItem} from 'interfaces/data'
 import {RowMetaField} from 'interfaces/rowMeta'
@@ -32,7 +32,7 @@ const InfoRow: React.FunctionComponent<InfoRowProps> = props => {
                 return meta ? !meta.hidden : true
             })
             .map((col, colIndex) => {
-                return <ValueCell
+                return <InfoCell
                     key={colIndex}
                     row={props.row}
                     col={col}

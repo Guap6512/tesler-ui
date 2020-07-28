@@ -2,12 +2,12 @@ import React from 'react'
 import TemplatedTitle from 'components/TemplatedTitle/TemplatedTitle'
 import {FieldType} from 'interfaces/view'
 import cn from 'classnames'
-import styles from './ValueCell.less'
+import styles from './InfoCell.less'
 import {DataItem, MultivalueSingleValue} from 'interfaces/data'
 import Field from 'components/Field/Field'
 import ActionLink from 'components/ui/ActionLink/ActionLink'
 import {WidgetInfoField, WidgetInfoMeta} from 'interfaces/widget'
-import ValueWrapper from './ValueWrapper'
+import InfoValueWrapper from './InfoValueWrapper'
 import MultiValueListRecord from 'components/Multivalue/MultiValueListRecord'
 
 interface ValueCellProps {
@@ -22,7 +22,7 @@ interface ValueCellProps {
     onDrillDown: (widgetName: string, cursor: string, bcName: string, fieldKey: string) => void,
 }
 const emptyMultivalueField = [] as MultivalueSingleValue[]
-export const ValueCell: React.FunctionComponent<ValueCellProps> = props => {
+export const InfoCell: React.FunctionComponent<ValueCellProps> = props => {
     const field = props.flattenWidgetFields.find(item => item.key === props.col.fieldKey)
     const isMultiValue = field.type === FieldType.multivalue
 
@@ -73,7 +73,7 @@ export const ValueCell: React.FunctionComponent<ValueCellProps> = props => {
             }
         </>
 
-    return <ValueWrapper
+    return <InfoValueWrapper
         key={field.key}
         row={props.row}
         col={props.col}
@@ -90,7 +90,7 @@ export const ValueCell: React.FunctionComponent<ValueCellProps> = props => {
         <div className={styles.fieldData}>
             {ResultField}
         </div>
-    </ValueWrapper>
+    </InfoValueWrapper>
 }
 
-export default React.memo(ValueCell)
+export default React.memo(InfoCell)
